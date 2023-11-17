@@ -1,0 +1,155 @@
+% 1) class:
+\documentclass[ngerman]{article}
+% 2) imports
+% i) style & language
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\usepackage{fancyhdr}
+%\usepackage[english]{babel}
+\usepackage[german]{babel}
+
+\usepackage{import}
+\usepackage{comment}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+
+% ii) citing
+\usepackage{babelbib}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={black},
+    citecolor={black},
+    urlcolor={black}}
+\usepackage[square,numbers]{natbib}
+\bibliographystyle{abbrvnat}
+
+% iii) math
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{dsfont}
+\usepackage{amsmath}
+\usepackage[capitalise]{cleveref}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{bbm}
+\usepackage{newtxmath}
+\usepackage{booktabs}
+
+% iv) include graphics
+\usepackage{graphicx}
+\usepackage{grffile}
+\graphicspath{ {figures/} }
+
+% v) include code snippets
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Auszug aus dem Code}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+% 3) set commands:
+% i) Define Theorems and other environments 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{satz}[theorem]{Satz}
+\newtheorem*{satz*}{Satz}
+\newtheorem{corollary}[theorem]{Korollar}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Bemerkung}
+\newtheorem*{remark*}{Bemerkung}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Beispiel}
+\newtheorem*{example*}{Beispiel}
+% set equ-counter
+\counterwithin{equation}{section}
+
+% ii) define math operators (Examples)
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+\DeclareMathOperator*\Ex{\mathbbm{E}}
+\DeclareMathOperator*\argmin{\mathrm{argmin}}
+
+% iii) define aliases (Examples)
+\newcommand{\Om}{\Omega}
+\newcommand{\om}{\omega}
+\newcommand{\R}{\mathbbm{R}}
+
+\newcommand{\mraum}{\left(\Om,\A\right)}
+\newcommand{\wraum}{\left(\Om,\A,\prob\right)}
+\newcommand{\fs}{f.~s.}
+
+\newcommand{\RomanNumeralCaps}[1]{\MakeUppercase{\romannumeral #1}}
+
+% commands with args (Examples)
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\cset}[2]{\set{#1\colon\ #2}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\abbs}[1]{\left\lVert#1\right\rVert}
+
+% adding notes while proofreading
+\newcommand{\notes}[1]{\textcolor{blue}{#1}}
+
+% iv) formating for 
+\setlist[enumerate,1]{label={\normalfont(\roman*)}}
+\setlist[enumerate]{topsep=0pt}%, noitemsep}
+
+
+% 3) front page
+\title{Lineare Regression am Beispiel des Datensatzes \lstinline[basicstyle=\huge]{tips}}
+\author{Thomas Müller}
+\date{} 
+
+
+% 4) document
+\begin{document}
+\parindent 0pt
+\parskip 5pt%=\baselineskip
+\lefthyphenmin 5
+\righthyphenmin 5
+
+% first page:
+\maketitle
+% abstract
+\begin{abstract}
+    \noindent
+    Anhand des Built-In Datensatzes aus \href{https://seaborn.pydata.org}{\lstinline{Seaborn}} behandeln wir die Grundsätze der Linearen Regression.
+    Dabei betrachten wir die Idee von linearen Modellen.
+    Wir erarbeiten die Grundlagen des t-Tests im Falle der Linearen Regression, um den p-Wert zu berechnen und berechnen ein Konfidenzband um die Regressionsgerade.
+\end{abstract}
+
+% import all sections
+\import{sections/}{1_introduction.tex}
+\import{sections/}{2_chapter.tex}
+% import bib and creates references
+\bibliography{sections/0_sources}
+
+\end{document}
